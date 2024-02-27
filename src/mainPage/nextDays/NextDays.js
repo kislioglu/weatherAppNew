@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     left: 5,
+    backgroundColor: 'red',
   },
   info: {
     alignItems: 'center',

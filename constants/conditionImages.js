@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 export const conditionImages = {
   'Sunny': require('../assets/weatherconditionimgs/sunny-day.jpg'),
-  'Clear ': require('../assets/weatherconditionimgs/sunny-day.jpg'),
+  'Clear': require('../assets/weatherconditionimgs/sunny-day.jpg'),
   'Partly cloudy': require('../assets/weatherconditionimgs/partly-cloudy.png'),
   'Cloudy': require('../assets/weatherconditionimgs/cloudy-day.jpg'),
   'Overcast': require('../assets/weatherconditionimgs/overcast-day.jpg'),
