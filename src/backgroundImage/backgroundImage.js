@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {View, Text, ImageBackground, StyleSheet} from 'react-native';
+import {View, ImageBackground, StyleSheet} from 'react-native';
 import React from 'react';
 import HomePage from '../main';
 import {conditionImages} from '../../constants/conditionImages';

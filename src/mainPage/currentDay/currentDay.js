@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   eachInfoStyle: {
     width: '90%',
-    height: 100,
+    height: 80,
     marginTop: 5,
     marginBottom: 5,
     marginLeft: 'auto',
