@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {View, Text, ImageBackground, StyleSheet} from 'react-native';
+import {View, ImageBackground, StyleSheet} from 'react-native';
 import React from 'react';
 import HomePage from '../main';
 import {conditionImages} from '../../constants/conditionImages';
@@ -13,7 +13,7 @@ function BackgroundImage() {
     <View>
       <ImageBackground
         style={styles.bg_image}
-        source={conditionImages[current?.condition?.text]}
+        // source={require('../../assets/weatherconditionimgs/mist-day.jpg')}
         blurRadius={100}>
         <HomePage />
       </ImageBackground>
@@ -23,6 +23,7 @@ function BackgroundImage() {
 const styles = StyleSheet.create({
   bg_image: {
     width: '100%',
+    backgroundColor: '#50C4ED',
     height: '100%',
   },
 });

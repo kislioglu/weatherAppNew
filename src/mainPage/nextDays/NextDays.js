@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
     borderRadius: 10,
-    marginLeft: 5,
+    marginLeft: 10,
     flex: 1,
     justifyContent: 'center',
   },
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     left: 5,
-    backgroundColor: 'red',
   },
   info: {
     alignItems: 'center',

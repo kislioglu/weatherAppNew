@@ -3,27 +3,50 @@ import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import {React} from 'react';
 import {useDataContext} from '../../context/dataContext';
 import {weatherIcons} from '../../../conditionIcons';
+// import AutoScrollText from '../../animatedText/AutoScrollText';
 function CurrentDay() {
-
-  const {weatherData,astroData} = useDataContext();
-
-  const {current} = weatherData;
-
-
+  const {weatherData, astroData} = useDataContext();
+  const {current, location} = weatherData;
   return (
     <View>
+      {/* temps, current condition, feelslike */}
       <View style={styles.calledCityInformations}>
-        <View style={styles.currentDayCondition}>
+        {/* current location */}
+        <View style={styles.feelslikeAndConditionInfo}>
           {current ? (
-            <Text style={styles.degree}>{current.temp_c + '°'}</Text>
+            <View style={styles.degreesInfo}>
+              <Text style={styles.degree}>{current.temp_c + '°'}</Text>
+
+              {location ? (
+                <View style={styles.currentLocationStyle}>
+                  <Image
+                    source={require('../../../assets/other/location.png')}
+                  />
+                  <Text style={styles.fontStyle}>{location?.name}</Text>
+                </View>
+              ) : null}
+            </View>
           ) : null}
-          {current ? (
-            <Image
-              style={styles.iconStyle}
-              source={weatherIcons[current.condition.text]}
-            />
-          ) : null}
-          <Text style={styles.conditionStyle}>{current?.condition?.text}</Text>
+          <View style={styles.currentDayCondition}>
+            {current ? (
+              <View style={styles.currentConditionInfo}>
+                {/* <AutoScrollText text={current?.condition?.text} /> */}
+                <Text style={styles.fontStyle}>{current?.condition?.text}</Text>
+
+                <Image
+                  style={styles.iconStyle}
+                  source={weatherIcons[current.condition.text]}
+                />
+              </View>
+            ) : null}
+            {current ? (
+              <View style={styles.feelslikeInfo}>
+                <Text style={styles.fontStyle}>Feelslike</Text>
+
+                <Text style={styles.fontStyle}>{current?.feelslike_c}</Text>
+              </View>
+            ) : null}
+          </View>
         </View>
         <ScrollView style={styles.currentDayOtherInfo}>
           {current ? (
@@ -38,6 +61,7 @@ function CurrentDay() {
                   />
                 </View>
               </View>
+
               <View style={styles.eachInfoStyle}>
                 <Text style={styles.textStyle}>Humidity</Text>
                 <View style={styles.ratesStyle}>
@@ -98,35 +122,83 @@ const styles = StyleSheet.create({
   calledCityInformations: {
     padding: 10,
     alignItems: 'center',
+    marginTop: 15,
     flex: 1,
-    top: 50,
+  },
+  currentLocationStyle: {
+    flexDirection: 'row',
   },
   currentDayCondition: {
+    width: '50%',
     alignItems: 'center',
+    justifyContent: 'center',
+    right: '0',
+  },
+  feelslikeAndConditionInfo: {
+    width: '100%',
+    flexDirection: 'row',
+  },
+  currentConditionInfo: {
+    alignItems: 'center',
+    borderRadius: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    height: 120,
+    marginBottom: 10,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    width: '60%',
+  },
+  feelslikeInfo: {
+    alignItems: 'center',
+    borderRadius: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    height: 120,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    width: '60%',
+  },
+  feelslike: {
+    fontWeight: 'bold',
+    color: '#fff',
   },
   currentStyles: {
-    marginTop: 20,
-    flex: 1,
-    height: 300,
+    height: 250,
     width: '100%',
   },
   currentDayOtherInfo: {
     width: 400,
+    top: 25,
   },
-  conditionStyle: {
+  fontStyle: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#000',
-    marginBottom: 5,
+  },
+  degreesInfo: {
+    width: '50%',
+    height: 250,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    // backgroundColor: 'blue',
+    marginLeft: 20,
+    justifyContent: 'center',
+    borderRadius: 20,
+    alignItems: 'center',
   },
   degree: {
+    width: '80%',
     color: '#000',
+    borderRadius: 20,
     fontWeight: 'bold',
-    fontSize: 80,
+    fontSize: 90,
+    paddingLeft: 5,
   },
   iconStyle: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
   },
   textStyle: {
     fontWeight: 'bold',
@@ -135,7 +207,7 @@ const styles = StyleSheet.create({
   },
   eachInfoStyle: {
     width: '90%',
-    height: 100,
+    height: 80,
     marginTop: 5,
     marginBottom: 5,
     marginLeft: 'auto',

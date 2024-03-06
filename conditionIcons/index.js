@@ -5,7 +5,7 @@ export const weatherIcons = {
   'Patchy rain nearby':require('../assets/icons/moderaterain.png'),
   'Patchy rain possible': require('../assets/icons/moderaterain.png'),
   'Sunny': require('../assets/icons/sun.png'),
-  'Clear ': require('../assets/icons/sun.png'),
+  'Clear': require('../assets/icons/sun.png'),
   'Overcast': require('../assets/icons/cloud.png'),
   'Cloudy': require('../assets/icons/cloud.png'),
   'Light rain': require('../assets/icons/moderaterain.png'),

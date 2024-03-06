@@ -11,12 +11,16 @@ import React, {useState} from 'react';
 import {useDataContext} from '../context/dataContext';
 
 function Search() {
-  const {setCity, autoComplete} = useDataContext();
+  const {setCity, autoComplete, setAutoCompleteFill} = useDataContext();
   const [showAutoComplete, setShowAutoComplete] = useState(false);
+  const [handleSearchVisibility, setHandleSearchVisibility] = useState(false);
 
-  const handleSearch = text => {
-    setCity(text);
+  const handleSearchAutoComplete = text => {
+    setAutoCompleteFill(text);
     setShowAutoComplete(true);
+  };
+  const handleSearch = () => {
+    setHandleSearchVisibility(!handleSearchVisibility);
   };
 
   const handlePress = cities => {
@@ -26,14 +30,28 @@ function Search() {
 
   return (
     <View style={styles.container}>
-      {/* search */}
-      <TextInput
-        style={styles.searchStyle}
-        placeholder="Find a location"
-        placeholderTextColor="#000"
-        // value={city}
-        onChangeText={handleSearch}
-      />
+      <View style={styles.searchAreaStyle}>
+        {/* search */}
+        {handleSearchVisibility ? (
+          <TextInput
+            style={styles.searchStyle}
+            placeholder="Find a location"
+            placeholderTextColor="#000"
+            onChangeText={handleSearchAutoComplete}
+          />
+        ) : null}
+
+        <TouchableOpacity
+          onPress={handleSearch}
+          style={styles.searchIconPosition}>
+          <View style={styles.searchIcon}>
+            <Image
+              style={styles.searchIconStyle}
+              source={require('../../assets/other/search.png')}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
       {/* autoComplete */}
       <View style={styles.autoCompleteStyle}>
         {showAutoComplete
@@ -78,23 +96,50 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
   },
-  searchStyle: {
-    borderBottomWidth: 2,
-    paddingLeft: 10,
+  searchAreaStyle: {
     width: '100%',
+    height: 60,
+    flexDirection: 'row',
+  },
+  searchStyle: {
+    paddingLeft: 15,
+    marginLeft: 15,
+    marginTop: 10,
+    height: 40,
+    width: '80%',
     fontWeight: 'bold',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    borderRadius: 50,
+  },
+  searchIconStyle: {
+    width: 24,
+    height: 24,
+  },
+  searchIcon: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 50,
+  },
+  searchIconPosition: {
+    height: '100%',
+    position: 'absolute',
+    marginTop: 10,
+    right: 10,
   },
   autoCompleteStyle: {
     position: 'absolute',
     top: 45,
-    left: 'auto',
-    right: 'auto',
     width: '90%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: 10,
+    marginTop: 20,
     borderRadius: 10,
     backgroundColor: '#fff',
+    // elevation: 100,
+    zIndex: 5,
   },
   autoCompleteCitiesStyle: {
     color: '#000',
