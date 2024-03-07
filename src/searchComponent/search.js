@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -59,27 +60,29 @@ function Search() {
             ? autoComplete.length > 0
               ? autoComplete.map((cities, index) => {
                   return (
-                    <TouchableOpacity
-                      onPress={() => handlePress(cities)}
-                      activeOpacity={0.7}
-                      style={[
-                        styles.autoCompleteCitiesStyle,
-                        index === autoComplete.length - 1 &&
-                          styles.withoutBorder,
-                      ]}
-                      key={index}>
-                      <View style={styles.eachCityStyle}>
-                        <Image
-                          source={require('../../assets/other/location.png')}
-                        />
-                        <Text style={styles.citiesStyle}>
-                          {cities.name + ','}
-                        </Text>
-                        <Text style={styles.citiesCountryStyle}>
-                          {cities.country}
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                      <TouchableOpacity
+                        onPress={() => handlePress(cities)}
+                        activeOpacity={0.7}
+                        style={[
+                          styles.autoCompleteCitiesStyle,
+                          index === autoComplete.length - 1 &&
+                            styles.withoutBorder,
+                        ]}
+                        key={index}>
+                        <View style={styles.eachCityStyle}>
+                          <Image
+                            source={require('../../assets/other/location.png')}
+                          />
+                          <Text style={styles.citiesStyle}>
+                            {cities.name + ','}
+                          </Text>
+                          <Text style={styles.citiesCountryStyle}>
+                            {cities.country}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </ScrollView>
                   );
                 })
               : null
@@ -109,6 +112,7 @@ const styles = StyleSheet.create({
     width: '80%',
     fontWeight: 'bold',
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    color: '#000',
     borderRadius: 50,
   },
   searchIconStyle: {
@@ -132,13 +136,11 @@ const styles = StyleSheet.create({
   autoCompleteStyle: {
     position: 'absolute',
     top: 45,
-    width: '90%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    width: '92%',
     marginTop: 20,
     borderRadius: 10,
     backgroundColor: '#fff',
-    // elevation: 100,
+    elevation: 5,
     zIndex: 5,
   },
   autoCompleteCitiesStyle: {
