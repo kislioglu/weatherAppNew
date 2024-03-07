@@ -2,8 +2,7 @@
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import {React} from 'react';
 import {useDataContext} from '../../context/dataContext';
-import {weatherIcons} from '../../../conditionIcons';
-// import AutoScrollText from '../../animatedText/AutoScrollText';
+import {weatherIcons} from '../../../conditionIcons/weatherIcons';
 function CurrentDay() {
   const {weatherData, astroData} = useDataContext();
   const {current, location} = weatherData;
@@ -43,7 +42,9 @@ function CurrentDay() {
               <View style={styles.feelslikeInfo}>
                 <Text style={styles.fontStyle}>Feelslike</Text>
 
-                <Text style={styles.fontStyle}>{current?.feelslike_c}</Text>
+                <Text style={styles.fontStyle}>
+                  {current?.feelslike_c + '°'}
+                </Text>
               </View>
             ) : null}
           </View>
@@ -57,7 +58,7 @@ function CurrentDay() {
                   <Text style={styles.textStyle}>{current?.wind_kph}</Text>
                   <Image
                     style={styles.ratesIconStyle}
-                    source={require('../../../assets/icons/wind_rate.png')}
+                    source={require('../../../assets/other/wind_rate.png')}
                   />
                 </View>
               </View>
@@ -70,7 +71,7 @@ function CurrentDay() {
                   </Text>
                   <Image
                     style={styles.ratesIconStyle}
-                    source={require('../../../assets/icons/humidity_rate.png')}
+                    source={require('../../../assets/other/humidity_rate.png')}
                   />
                 </View>
               </View>
@@ -80,7 +81,7 @@ function CurrentDay() {
                   <Text style={styles.textStyle}>{'%' + current?.cloud}</Text>
                   <Image
                     style={styles.ratesIconStyle}
-                    source={require('../../../assets/icons/cloud_rate.png')}
+                    source={require('../../../assets/other/cloud_rate.png')}
                   />
                 </View>
               </View>
@@ -91,7 +92,7 @@ function CurrentDay() {
                     <View style={styles.sunSetStyle}>
                       <Image
                         style={styles.sunIconStyle}
-                        source={require('../../../assets/icons/sunrise.png')}
+                        source={require('../../../assets/other/sunrise.png')}
                       />
                       <Text style={styles.textStyle}>{astroData[0]}</Text>
                     </View>
@@ -101,7 +102,7 @@ function CurrentDay() {
                     <View style={styles.sunSetStyle}>
                       <Image
                         style={styles.sunIconStyle}
-                        source={require('../../../assets/icons/sunset.png')}
+                        source={require('../../../assets/other/sunset.png')}
                       />
                       <Text style={styles.textStyle}>{astroData[1]}</Text>
                     </View>
@@ -189,12 +190,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   degree: {
-    width: '80%',
+    width: '100%',
     color: '#000',
     borderRadius: 20,
     fontWeight: 'bold',
-    fontSize: 90,
-    paddingLeft: 5,
+    fontSize: 70,
+    textAlign: 'center',
   },
   iconStyle: {
     width: 30,
