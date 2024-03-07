@@ -60,7 +60,6 @@ function Search() {
             ? autoComplete.length > 0
               ? autoComplete.map((cities, index) => {
                   return (
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                       <TouchableOpacity
                         onPress={() => handlePress(cities)}
                         activeOpacity={0.7}
@@ -82,7 +81,6 @@ function Search() {
                           </Text>
                         </View>
                       </TouchableOpacity>
-                    </ScrollView>
                   );
                 })
               : null
