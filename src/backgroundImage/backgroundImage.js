@@ -13,7 +13,7 @@ function BackgroundImage() {
     <View>
       <ImageBackground
         style={styles.bg_image}
-        // source={require('../../assets/weatherconditionimgs/mist-day.jpg')}
+        source={conditionImages[current?.condition?.text] ?? require('../../assets/weatherconditionimgs/blizzard.jpg')}
         blurRadius={100}>
         <HomePage />
       </ImageBackground>
@@ -23,7 +23,7 @@ function BackgroundImage() {
 const styles = StyleSheet.create({
   bg_image: {
     width: '100%',
-    backgroundColor: '#50C4ED',
+    // backgroundColor: '#50C4ED',
     height: '100%',
   },
 });
